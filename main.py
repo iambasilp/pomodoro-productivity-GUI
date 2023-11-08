@@ -11,7 +11,9 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+# ---------------------------- TIMER MECHANISM ------------------------------- #
+def start_timer():
+    count_down(5)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
@@ -31,7 +33,7 @@ canvas.create_image(100, 112, image=tomato_loc) # height and width of the image
 timer_text = canvas.create_text(103, 130, text="00:00", fill="white", font=(FONT_NAME, 35, 'bold'))
 canvas.grid(column=1, row=1)
 
-count_down(5)
+
 
 #label
 timer_label = Label(text="Timer", fg=GREEN, font=(FONT_NAME, 40), bg=YELLOW)
@@ -41,7 +43,7 @@ check_label = Label(text="D", fg=GREEN, bg=YELLOW)
 check_label.grid(column=1, row=3)
 
 #Button
-button_start = Button(text="Start", highlightthickness=0)
+button_start = Button(text="Start", highlightthickness=0, command=start_timer)
 button_start.grid(column=0, row=2)
 
 button_reset = Button(text="Reset", highlightthickness=0)
