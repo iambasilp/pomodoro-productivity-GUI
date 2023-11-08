@@ -6,12 +6,14 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
+WORK_MIN = 1
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 
-# ---------------------------- TIMER RESET ------------------------------- # 
+# ---------------------------- TIMER RESET ------------------------------- #
+
+
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
@@ -47,6 +49,12 @@ def count_down(count):
         window.after(1000, count_down, count-1) #after 1000 (1 sec) count_down fun call with count-1
     else:
         start_timer()
+        mark = ""
+        work_sessions = math.floor(reps/2)
+        for _ in range(work_sessions):
+            mark += "Done"
+        check_label.config(text=mark)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -66,7 +74,7 @@ canvas.grid(column=1, row=1)
 timer_label = Label(text="Timer", fg=GREEN, font=(FONT_NAME, 40), bg=YELLOW)
 timer_label.grid(column=1, row=0)
 
-check_label = Label(text="D", fg=GREEN, bg=YELLOW)
+check_label = Label(fg=GREEN, bg=YELLOW)
 check_label.grid(column=1, row=3)
 
 #Button
