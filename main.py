@@ -1,4 +1,5 @@
 from tkinter import *
+import math
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -13,12 +14,17 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
-    count_down(5)
+    count_down(1*60)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    canvas.itemconfig(timer_text, text=count) #we replaced canvas so canvas.itemconfig funnction
-    if count > 0:
+    count_minute = math.floor(count/60)
+    count_second = count % 60                   # it Turns 4.526 to 4
+    if count_second < 10:   #int  Dynamic Typing its loop reasigning
+        count_second = f"0{count_second}" #string  Dynamic Typing its loop reasigning
+
+    canvas.itemconfig(timer_text, text=f"{count_minute}:{count_second}") #we replaced canvas so canvas.itemconfig funnction          # 245/60 =4 minute
+    if count > 0:                                                                                         #245%60 = seconds
         window.after(1000, count_down, count-1) #after 1000 (1 sec) count_down fun call with count-1
 
 # ---------------------------- UI SETUP ------------------------------- #
