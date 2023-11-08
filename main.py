@@ -18,6 +18,7 @@ LONG_BREAK_MIN = 20
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Pomodoro")
+window.config(padx=100, pady=50)
 
 canvas = Canvas(width=200, height=224)
 tomato_loc = PhotoImage(file="tomato.png")
