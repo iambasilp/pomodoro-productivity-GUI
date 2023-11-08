@@ -33,6 +33,11 @@ timer_label.grid(column=1, row=0)
 check_label = Label(text="D", fg=GREEN, bg=YELLOW)
 check_label.grid(column=1, row=3)
 
+#Button
+button_start = Button(text="Start", highlightthickness=0)
+button_start.grid(column=0, row=2)
 
+button_reset = Button(text="Reset", highlightthickness=0)
+button_reset.grid(column=2, row=2)
 
 window.mainloop()
