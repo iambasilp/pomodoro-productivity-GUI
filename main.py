@@ -10,9 +10,16 @@ WORK_MIN = 1
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- #
-
+def reset_timer():
+    global reps
+    window.after_cancel(timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    timer_label.config(text="Timer")
+    check_label.config(text="")
+    reps = 0
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -46,7 +53,8 @@ def count_down(count):
 
     canvas.itemconfig(timer_text, text=f"{count_minute}:{count_second}") #we replaced canvas so canvas.itemconfig funnction          # 245/60 =4 minute
     if count > 0:                                                                                         #245%60 = seconds
-        window.after(1000, count_down, count-1) #after 1000 (1 sec) count_down fun call with count-1
+        global timer
+        timer=window.after(1000, count_down, count-1) #after 1000 (1 sec) count_down fun call with count-1
     else:
         start_timer()
         mark = ""
@@ -81,7 +89,7 @@ check_label.grid(column=1, row=3)
 button_start = Button(text="Start", highlightthickness=0, command=start_timer)
 button_start.grid(column=0, row=2)
 
-button_reset = Button(text="Reset", highlightthickness=0)
+button_reset = Button(text="Reset", highlightthickness=0,command=reset_timer)
 button_reset.grid(column=2, row=2)
 
 window.mainloop()
