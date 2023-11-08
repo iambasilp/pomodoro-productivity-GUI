@@ -6,15 +6,31 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
+WORK_MIN = 1
+SHORT_BREAK_MIN = 25
 LONG_BREAK_MIN = 20
+reps = 0
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
-    count_down(1*60)
+    global reps
+    work_sec = WORK_MIN * 60
+    short_bre = SHORT_BREAK_MIN * 60
+    long_bre = LONG_BREAK_MIN * 60
+    reps += 1
+    if reps % 8 == 0:
+        count_down(long_bre)
+    elif reps % 2 == 0:
+        count_down(short_bre)
+    else:
+        count_down(work_sec)
+
+
+
+
+
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
@@ -26,6 +42,8 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_minute}:{count_second}") #we replaced canvas so canvas.itemconfig funnction          # 245/60 =4 minute
     if count > 0:                                                                                         #245%60 = seconds
         window.after(1000, count_down, count-1) #after 1000 (1 sec) count_down fun call with count-1
+    else:
+        start_timer()
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
